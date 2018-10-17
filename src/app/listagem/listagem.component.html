@@ -1,0 +1,34 @@
+<header class="jumbotron">
+  <h1 class="text-center">{{title}}</h1>
+</header>
+<main class="container">
+
+<!--   <div class="row">
+    <div class="col-12 mb-4">
+      <a routerLink="/cadastro" class="btn btn-primary">Nova foto</a>
+    </div>
+  </div> -->
+
+  <div class="row mb-4">
+      <div class="col-sm-12">
+          <form class="input-group">
+              <span class="input-group-prepend">
+                  <a routerLink="/cadastro" class="btn btn-primary">Nova foto</a>
+              </span>
+
+              <!-- campo para filtrar pelo titulo -->
+              <input (input)="true" #inputBusca type="search" class="form-control" placeholder="filtrar pelo título da foto">
+          </form>
+      </div>
+  </div>
+
+  <div class="row">
+    <card *ngFor="let foto of listaFotos | filtroPorTitulo:inputBusca.value" [objeto]="foto" class="col-md-4 mb-4">
+      <a [routerLink]="['/editar', foto._id]" class="foto">
+        <foto [url]="foto.url" [titulo]="foto.titulo"></foto>
+      </a>
+      <button (click)="apagar(foto)" class="btn btn-danger">Apagar</button>
+      <a [routerLink]="['/editar', foto._id]" class="btn btn-primary">Editar</a>
+    </card>
+  </div>
+</main>
